@@ -11,3 +11,7 @@ an opensource light-weight,pluggable knowledge management platform
 - openkm-plugins 
   
   plugins directory, every function act as a plugin  
+  
+  - appstore-plugin
+
+    appstore plugin for openkm
