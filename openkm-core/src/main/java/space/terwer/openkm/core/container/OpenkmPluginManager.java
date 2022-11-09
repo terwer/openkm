@@ -34,10 +34,14 @@ public class OpenkmPluginManager extends SpringPluginManager {
     public void init() {
         logger.info("初始化插件");
         super.loadPlugins();
+        logger.info("启动插件");
         super.startPlugins();
 
+        logger.info("注册插件到上下文");
         AbstractAutowireCapableBeanFactory beanFactory = (AbstractAutowireCapableBeanFactory) this.getApplicationContext().getAutowireCapableBeanFactory();
         ExtensionsInjector extensionsInjector = new ExtensionsInjector(this, beanFactory);
         extensionsInjector.injectExtensions();
+
+        logger.info("插件初始化完毕");
     }
 }
