@@ -18,6 +18,7 @@
         <repackage.classifier/>
         <kotlin.version>1.6.21</kotlin.version>
         <spring-native.version>0.10.0</spring-native.version>
+        <pf4j-spring.version>0.8.0</pf4j-spring.version>
     </properties>
     <dependencies>
         <!-- kotlin -->
@@ -63,6 +64,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- pf4j-spring -->
+        <dependency>
+            <groupId>org.pf4j</groupId>
+            <artifactId>pf4j-spring</artifactId>
+            <version>${pf4j-spring.version}</version>
         </dependency>
 
         <!-- test -->
