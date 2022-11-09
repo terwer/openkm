@@ -1,6 +1,8 @@
 package space.terwer.openkm.core;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.pf4j.PluginManager;
+import org.pf4j.PluginWrapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.ApplicationContext;
 import space.terwer.openkm.core.property.GlobalValue;
+
+import java.util.List;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan(basePackages = {"space.terwer.openkm.core.property"})
@@ -19,9 +23,16 @@ public class OpenkmCoreApplication {
 
         if (GlobalValue.pluginSwitch) {
             PluginManager pluginManager = applicationContext.getBean(PluginManager.class);
-            logger.info("Find plugins:" + pluginManager.getPlugins().size());
+            logger.info("找到 " + pluginManager.getPlugins().size() + " 个有效插件");
+
+            if (CollectionUtils.isNotEmpty(pluginManager.getPlugins())) {
+                List<PluginWrapper> plugins = pluginManager.getPlugins();
+                plugins.forEach(p -> {
+                    logger.info(p.getPluginId());
+                });
+            }
         } else {
-            logger.warn("Plugin not enabled");
+            logger.warn("插件未启用，请在配置中开启");
         }
     }
 
