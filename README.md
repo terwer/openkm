@@ -4,6 +4,10 @@ an opensource light-weight,pluggable knowledge management platform
 
 ## Structure
 
+- shared-plugin-interfaces
+
+  share plugin interface for openkm plugin system
+
 - openkm-core 
 
   core module, the smallest runnable unit     
@@ -15,3 +19,11 @@ an opensource light-weight,pluggable knowledge management platform
   - appstore-plugin
 
     appstore plugin for openkm
+  
+  - auth plugin
+  
+    a plugin for auth
+
+- openkm-plugin-archetype
+ 
+  plugin template
