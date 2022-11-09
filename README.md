@@ -1,4 +1,4 @@
-# openkm-core
+# openkm
 
 an opensource light-weight,pluggable knowledge management platform
 

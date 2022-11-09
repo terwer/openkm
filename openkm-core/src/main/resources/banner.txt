@@ -5,4 +5,4 @@
   \ \  \\\  \ \  \___|\ \  \_|\ \ \  \\ \  \ \  \\ \  \ \  \    \ \  \
    \ \_______\ \__\    \ \_______\ \__\\ \__\ \__\\ \__\ \__\    \ \__\
     \|_______|\|__|     \|_______|\|__| \|__|\|__| \|__|\|__|     \|__|
-   :: An lightweight pluguable development plantform for any using ::
+:: an opensource light-weight,pluggable knowledge management platform ::

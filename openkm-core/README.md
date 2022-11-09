@@ -1,4 +1,4 @@
-# openkm
+# openkm-core
 
 The core module of openkm
 
