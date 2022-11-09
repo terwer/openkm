@@ -19,7 +19,7 @@ import java.nio.file.Paths;
 @ConditionalOnProperty(name = "openkm.plugin-switch", havingValue = "true")
 @Configuration
 public class PluginConfig {
-    private static final Logger logger = LoggerFactory.getLogger(PluginConfig.class);
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public PluginConfig() {
         logger.info("插件配置开始");
