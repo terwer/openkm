@@ -10,4 +10,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "openkm")
 public class OpenKmProperty {
     private boolean pluginSwitch;
+    private String pluginsDir;
 }

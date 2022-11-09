@@ -51,6 +51,12 @@
 			<groupId>org.pf4j</groupId>
 			<artifactId>pf4j-spring</artifactId>
 			<version>${pf4j-spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.slf4j</groupId>
+					<artifactId>slf4j-reload4j</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- test -->
