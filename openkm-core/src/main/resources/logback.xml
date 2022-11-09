@@ -71,6 +71,7 @@
     <!-- 自定义日志级别 -->
     <logger name="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" level="info"/>
     <logger name="space.terwer.openkm" level="info"/>
+    <logger name="space.terwer.openkm.core.pluginapi.BasePlugin" level="debug"/>
 
     <!-- 日志输出级别 -->
     <root level="INFO">
