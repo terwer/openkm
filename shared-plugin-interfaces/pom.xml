@@ -6,7 +6,7 @@
 
     <groupId>space.terwer</groupId>
     <artifactId>shared-plugin-interfaces</artifactId>
-    <version>4.1.25</version>
+    <version>4.1.26</version>
     <packaging>jar</packaging>
 
     <properties>

@@ -4,8 +4,6 @@ import org.pf4j.PluginRuntimeException;
 import org.pf4j.PluginWrapper;
 import org.pf4j.spring.SpringPlugin;
 import org.pf4j.spring.SpringPluginManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.GenericApplicationContext;
@@ -36,27 +34,32 @@ public abstract class BasePlugin extends SpringPlugin {
      * 注册插件的bean，建议所有的插件实现此方法，请在插件实现此方法，用于注册插件依赖
      */
     public void autoRegisterBeans(Class clazz) {
-        List<Class> annotationClazz = new ArrayList<>();
-        annotationClazz.add(Component.class);
-        annotationClazz.add(Controller.class);
-        annotationClazz.add(Service.class);
-        annotationClazz.add(Configuration.class);
         List<String> classNames = ClazzUtil.getClassNames(clazz);
 
+        int beanCount = 0;
         for (String className : classNames) {
             GenericApplicationContext applicationContext = (GenericApplicationContext) this.getApplicationContext();
             try {
                 Class aClass = this.wrapper.getPluginClassLoader().loadClass(className);
-                applicationContext.registerBean(aClass);
 
-                logger.info("Pugin registerBean " + aClass);
+                // 只注册有特定注解的bean
+                List<Class> annotationClazz = new ArrayList<>();
+                annotationClazz.add(Component.class);
+                annotationClazz.add(Controller.class);
+                annotationClazz.add(Service.class);
+                annotationClazz.add(Configuration.class);
+                if (ClazzUtil.isInAnnotationList(aClass, annotationClazz)) {
+                    applicationContext.registerBean(aClass);
+                    beanCount++;
+                    logger.info("Pugin registerBean " + aClass);
+                }
             } catch (ClassNotFoundException e) {
                 logger.error("插件类加载失败");
                 throw new RuntimeException(e);
             }
 
         }
-        logger.info("自动注册bean结束，共注册 " + classNames.size() + " 个bean");
+        logger.info("自动注册bean结束，共注册 " + beanCount + " 个bean");
     }
 
     /**
