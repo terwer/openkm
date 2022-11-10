@@ -33,16 +33,17 @@ public class PluginConfig {
         if (pluginSwitch) {
             String env = GlobalValue.env;
             String pluginsDir = GlobalValue.pluginDir;
-            logger.info("当前启动环境为:" + env);
             logger.info("当前插件目录为:" + pluginsDir);
 
             // 插件开启，先设置环境变量
-            System.setProperty("pf4j.mode", env.equals("dev") ? RuntimeMode.DEVELOPMENT.toString() : RuntimeMode.DEPLOYMENT.toString());
+            String mode = env.equals("dev") ? RuntimeMode.DEVELOPMENT.toString() : RuntimeMode.DEPLOYMENT.toString();
+            System.setProperty("pf4j.mode", mode);
             System.setProperty("pf4j.pluginsDir", pluginsDir);
 
             // 创建插件管理器
             Path pluginsRoot = Paths.get(pluginsDir);
             logger.info("开始创建插件管理器，插件路径为：" + pluginsRoot.toUri());
+
             return new OpenkmPluginManager(pluginsRoot);
         }
 

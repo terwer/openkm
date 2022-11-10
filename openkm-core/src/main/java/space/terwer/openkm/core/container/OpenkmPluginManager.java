@@ -1,11 +1,14 @@
 package space.terwer.openkm.core.container;
 
+import org.apache.commons.lang3.StringUtils;
 import org.pf4j.ExtensionFactory;
+import org.pf4j.RuntimeMode;
 import org.pf4j.spring.ExtensionsInjector;
 import org.pf4j.spring.SpringPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
+import space.terwer.openkm.core.property.GlobalValue;
 
 import javax.annotation.PostConstruct;
 import java.nio.file.Path;
@@ -14,7 +17,7 @@ import java.nio.file.Path;
  * 核心插件管理器
  */
 public class OpenkmPluginManager extends SpringPluginManager {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(OpenkmPluginManager.class);
 
     public OpenkmPluginManager(Path pluginsRoot) {
         super(pluginsRoot);
@@ -27,6 +30,20 @@ public class OpenkmPluginManager extends SpringPluginManager {
     @Override
     protected ExtensionFactory createExtensionFactory() {
         return super.createExtensionFactory();
+    }
+
+    @Override
+    public RuntimeMode getRuntimeMode() {
+        if (this.runtimeMode == null) {
+            String mode = GlobalValue.env.equals("dev") ? RuntimeMode.DEVELOPMENT.toString() : RuntimeMode.DEPLOYMENT.toString();
+            String modeAsString = System.getProperty("pf4j.mode", mode);
+            if (StringUtils.isEmpty(modeAsString)) {
+                modeAsString = RuntimeMode.DEPLOYMENT.toString();
+            }
+            this.runtimeMode = RuntimeMode.byName(modeAsString);
+        }
+
+        return this.runtimeMode;
     }
 
     @Override
