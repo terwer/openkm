@@ -12,14 +12,13 @@
     <parent>
         <groupId>space.terwer</groupId>
         <artifactId>openkm-core</artifactId>
-        <version>0.0.2-SNAPSHOT</version>
+        <version>0.0.3-SNAPSHOT</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-        <openkm.core.version>0.0.2-SNAPSHOT</openkm.core.version>
     </properties>
 
     <dependencies>
