@@ -7,7 +7,6 @@ import org.pf4j.spring.SpringPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.GenericApplicationContext;
 
 /**
  * 插件基类，建议所有的插件都继承此类
@@ -17,21 +16,12 @@ public abstract class BasePlugin extends SpringPlugin {
 
     public BasePlugin(PluginWrapper wrapper) {
         super(wrapper);
-
-        // 注册插件依赖
-        if (!(super.getApplicationContext() instanceof GenericApplicationContext)) {
-            throw new RuntimeException("获取插件上下文失败");
-        }
-        GenericApplicationContext applicationContext = (GenericApplicationContext) super.getApplicationContext();
-        this.registerBeans(applicationContext);
     }
 
     /**
      * 注册插件的bean，建议所有的插件实现此方法，请在插件实现此方法，用于注册插件依赖
-     *
-     * @param applicationContext
      */
-    protected abstract void registerBeans(GenericApplicationContext applicationContext);
+    protected abstract void registerBeans();
 
     /**
      * 创建上下文，这里把插件与容器的上文保持一致，便于交互
@@ -40,10 +30,10 @@ public abstract class BasePlugin extends SpringPlugin {
      */
     @Override
     protected ApplicationContext createApplicationContext() {
-        logger.debug("Creating BasePlugin applicationContext");
+        logger.info("Creating BasePlugin applicationContext");
         SpringPluginManager springPluginManager = (SpringPluginManager) (this.getWrapper().getPluginManager());
         ApplicationContext applicationContext = springPluginManager.getApplicationContext();
-        logger.debug("BasePlugin applicationContext is:" + applicationContext);
+        logger.info("BasePlugin applicationContext is:" + applicationContext);
         return applicationContext;
     }
 
