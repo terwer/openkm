@@ -8,7 +8,7 @@ appstore plugin for openkm
 > 使用maven打包
 
 ```bash
-./mvnw clean package -DskipTests
+./build.sh
 ```
 
 > 将 ``target/`` 目录下的 ``appstore-plugin-1.0.0.zip`` 文件拷贝到容器项目的 ``plugins`` 目录下
@@ -17,4 +17,4 @@ appstore plugin for openkm
 
 #### 联系作者
 
-[https://terwer.space](https://blog.terwergreen.com/guestbook.html)
+[http://www.terwergreen.com](http://www.terwergreen.com/guestbook.html)

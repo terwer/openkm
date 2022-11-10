@@ -32,11 +32,12 @@
                 <directory>src/main/resources</directory>
                 <!-- <includes>
                     <include>**/*.txt</include>
-                </includes> -->
+                </includes>
                 <excludes>
                     <exclude>assembly.xml</exclude>
                     <exclude>plugin.properties</exclude>
                 </excludes>
+                -->
             </resource>
         </resources>
 
