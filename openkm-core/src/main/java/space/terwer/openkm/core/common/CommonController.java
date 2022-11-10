@@ -1,5 +1,7 @@
 package space.terwer.openkm.core.common;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping("/")
 public class CommonController {
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
+        logger.info("访问容器首页");
         return "forward:/index.html";
     }
 }
