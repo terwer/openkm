@@ -7,13 +7,27 @@ import org.pf4j.spring.SpringPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.GenericApplicationContext;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
+import space.terwer.util.ClazzUtil;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 插件基类，建议所有的插件都继承此类
  */
 public abstract class BasePlugin extends SpringPlugin {
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final PluginLogger logger = PluginLoggerFactory.getLogger(BasePlugin.class, this.getClass());
 
+    /**
+     * 需要加上 super.autoRegisterBeans(xxx.class) 来自动注册bean，目前支撑 @Component，@Controller，@Service，@Configuration注解自动注册
+     *
+     * @param wrapper
+     */
     public BasePlugin(PluginWrapper wrapper) {
         super(wrapper);
     }
@@ -21,7 +35,29 @@ public abstract class BasePlugin extends SpringPlugin {
     /**
      * 注册插件的bean，建议所有的插件实现此方法，请在插件实现此方法，用于注册插件依赖
      */
-    protected abstract void registerBeans();
+    public void autoRegisterBeans(Class clazz) {
+        List<Class> annotationClazz = new ArrayList<>();
+        annotationClazz.add(Component.class);
+        annotationClazz.add(Controller.class);
+        annotationClazz.add(Service.class);
+        annotationClazz.add(Configuration.class);
+        List<String> classNames = ClazzUtil.getClassNames(clazz);
+
+        for (String className : classNames) {
+            GenericApplicationContext applicationContext = (GenericApplicationContext) this.getApplicationContext();
+            try {
+                Class aClass = this.wrapper.getPluginClassLoader().loadClass(className);
+                applicationContext.registerBean(aClass);
+
+                logger.info("Pugin registerBean " + aClass);
+            } catch (ClassNotFoundException e) {
+                logger.error("插件类加载失败");
+                throw new RuntimeException(e);
+            }
+
+        }
+        logger.info("自动注册bean结束，共注册 " + classNames.size() + " 个bean");
+    }
 
     /**
      * 创建上下文，这里把插件与容器的上文保持一致，便于交互

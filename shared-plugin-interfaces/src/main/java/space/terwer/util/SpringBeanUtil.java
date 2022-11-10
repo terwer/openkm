@@ -9,18 +9,18 @@ import org.springframework.context.ApplicationContextAware;
 /**
  * SpringBeanUtils工具类
  *
- * @name: SpringBeanUtils
+ * @name: SpringBeanUtil
  * @author: terwer
  * @date: 2022-03-07 14:26
  **/
-public final class SpringBeanUtils implements ApplicationContextAware {
-    private static final Logger logger = LoggerFactory.getLogger(SpringBeanUtils.class);
+public final class SpringBeanUtil implements ApplicationContextAware {
+    private static final Logger logger = LoggerFactory.getLogger(SpringBeanUtil.class);
 
     private static ApplicationContext coreApplicationContext;
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        SpringBeanUtils.coreApplicationContext = applicationContext;
+        SpringBeanUtil.coreApplicationContext = applicationContext;
         logger.info("设置容器的Spring上下文");
     }
 
@@ -30,10 +30,10 @@ public final class SpringBeanUtils implements ApplicationContextAware {
      * @return
      */
     public static ApplicationContext getCoreApplicationContext() {
-        if (null == SpringBeanUtils.coreApplicationContext) {
+        if (null == SpringBeanUtil.coreApplicationContext) {
             throw new RuntimeException("应用未初始化完成，上下文获取失败，请调整获取上下文的时机");
         }
-        return SpringBeanUtils.coreApplicationContext;
+        return SpringBeanUtil.coreApplicationContext;
     }
 
     /**
@@ -43,7 +43,7 @@ public final class SpringBeanUtils implements ApplicationContextAware {
      * @return
      */
     public static Object getBean(String beanName) {
-        return SpringBeanUtils.coreApplicationContext.getBean(beanName);
+        return SpringBeanUtil.coreApplicationContext.getBean(beanName);
     }
 
     /**
@@ -54,6 +54,6 @@ public final class SpringBeanUtils implements ApplicationContextAware {
      * @return
      */
     public static <T> T getBean(Class<T> t) {
-        return SpringBeanUtils.coreApplicationContext.getBean(t);
+        return SpringBeanUtil.coreApplicationContext.getBean(t);
     }
 }

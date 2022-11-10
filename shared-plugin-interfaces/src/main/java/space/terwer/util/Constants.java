@@ -1,8 +1,11 @@
 package space.terwer.util;
 
+import org.springframework.stereotype.Component;
+
 /**
  * 默认常量定义
  */
+@Component
 public class Constants {
     /**
      * 默认页码
