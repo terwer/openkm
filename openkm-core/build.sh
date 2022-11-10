@@ -4,6 +4,13 @@ ARTIFACT_ID=$(./mvnw org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -
 APP_VERSION=$(./mvnw org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version|grep -Ev '(^\[|Download\w+:)')
 echo "读取配置完毕."
 
+# 前端
+echo "构建前端..."
+cd src/main/webapp
+pnpm i && pnpm run build
+cd ../../../
+
+echo '构建后端...'
 chmod +x mvnw
 # 打包
 ./mvnw clean package -DskipTests -V -e

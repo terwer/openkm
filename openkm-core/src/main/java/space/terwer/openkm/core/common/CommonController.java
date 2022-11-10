@@ -16,6 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class CommonController {
     @RequestMapping(method = RequestMethod.GET)
     public String index() {
-        return "redirect:/index.html";
+        return "forward:/index.html";
     }
 }

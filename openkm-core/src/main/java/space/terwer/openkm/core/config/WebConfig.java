@@ -6,13 +6,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.Ordered;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import space.terwer.openkm.core.container.OpenkmPluginManager;
 
 import java.util.List;
@@ -44,6 +43,11 @@ public class WebConfig implements WebMvcConfigurer {
             openkmPluginManager = this.context.getBean(OpenkmPluginManager.class);
         }
         return openkmPluginManager;
+    }
+
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        return new InternalResourceViewResolver();// 用于解析重定向 redirect:
     }
 
     /**

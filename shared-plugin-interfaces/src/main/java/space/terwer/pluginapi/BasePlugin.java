@@ -7,6 +7,7 @@ import org.pf4j.spring.SpringPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
 
 /**
  * 插件基类，建议所有的插件都继承此类
@@ -16,8 +17,27 @@ public abstract class BasePlugin extends SpringPlugin {
 
     public BasePlugin(PluginWrapper wrapper) {
         super(wrapper);
+
+        // 注册插件依赖
+        if (!(super.getApplicationContext() instanceof GenericApplicationContext)) {
+            throw new RuntimeException("获取插件上下文失败");
+        }
+        GenericApplicationContext applicationContext = (GenericApplicationContext) super.getApplicationContext();
+        this.registerBeans(applicationContext);
     }
 
+    /**
+     * 注册插件的bean，建议所有的插件实现此方法，请在插件实现此方法，用于注册插件依赖
+     *
+     * @param applicationContext
+     */
+    protected abstract void registerBeans(GenericApplicationContext applicationContext);
+
+    /**
+     * 创建上下文，这里把插件与容器的上文保持一致，便于交互
+     *
+     * @return
+     */
     @Override
     protected ApplicationContext createApplicationContext() {
         logger.debug("Creating BasePlugin applicationContext");
@@ -27,6 +47,9 @@ public abstract class BasePlugin extends SpringPlugin {
         return applicationContext;
     }
 
+    /**
+     * 通用的插件启动方法
+     */
     @Override
     public void start() {
         try {
@@ -36,12 +59,18 @@ public abstract class BasePlugin extends SpringPlugin {
         } catch (Exception e) {
             throw new PluginRuntimeException("插件启动失败，请排查", e);
         }
-
     }
 
+    /**
+     * 通用的插件停止方法
+     */
     @Override
     public void stop() {
-        super.stop();
+        try {
+            super.stop();
+        } catch (Exception e) {
+            logger.error("插件停止发生异常", e);
+        }
         logger.debug("插件已停止");
     }
 }
