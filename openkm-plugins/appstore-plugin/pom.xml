@@ -28,15 +28,19 @@
         <!-- 设置打包的资源文件 -->
         <resources>
             <resource>
-                <directory>src/main/resources</directory>
-                <!-- <includes>
-                    <include>**/*.txt</include>
+                <directory>src/main/webapp</directory>
+                <!--注意此次必须要放在此目录下才能被访问到 -->
+                <targetPath>META-INF/resources</targetPath>
+                <includes>
+                    <include>dist/**</include>
                 </includes>
-                <excludes>
-                    <exclude>assembly.xml</exclude>
-                    <exclude>plugin.properties</exclude>
-                </excludes>
-                -->
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*</include>
+                </includes>
             </resource>
         </resources>
 

@@ -6,6 +6,9 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
+    <h1>Success!</h1>
+    <p>This is a index page from core, you see this because your application is running successfully.</p>
+    <p style="font-style: italic">--- The Openkm Team</p>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
     </a>

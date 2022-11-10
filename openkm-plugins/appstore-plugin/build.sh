@@ -4,10 +4,9 @@ echo "开始构建..."
 
 # 前端
 echo "构建前端..."
-cd ui
+cd src/main/webapp
 pnpm i && pnpm run build
-cd ../
-cp -r ui/dist/ src/main/resources/static
+cd ../../../
 
 # 插件资源
 cp plugin.properties src/main/resources

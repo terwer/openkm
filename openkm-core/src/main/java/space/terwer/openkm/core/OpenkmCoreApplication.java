@@ -35,5 +35,4 @@ public class OpenkmCoreApplication {
             logger.warn("插件未启用，请在配置中开启");
         }
     }
-
 }
