@@ -1,4 +1,4 @@
-package space.terwer.openkm.core;
+package space.terwer.openkm.test;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.pf4j.PluginManager;
@@ -13,13 +13,13 @@ import space.terwer.openkm.common.GlobalValue;
 
 import java.util.List;
 
-@SpringBootApplication(scanBasePackages = {"space.terwer.openkm.core", "space.terwer.openkm.common"})
-@ConfigurationPropertiesScan(basePackages = {"space.terwer.openkm.core.property"})
-public class OpenkmCoreApplication {
-    private static final Logger logger = LoggerFactory.getLogger(OpenkmCoreApplication.class);
+@SpringBootApplication(scanBasePackages = {"space.terwer.openkm.test", "space.terwer.openkm.common"})
+//@ConfigurationPropertiesScan(basePackages = {"space.terwer.openkm.common.property"})
+public class OpenkmTestApplication {
+    private static final Logger logger = LoggerFactory.getLogger(OpenkmTestApplication.class);
 
     public static void main(String[] args) {
-        ApplicationContext applicationContext = SpringApplication.run(OpenkmCoreApplication.class, args);
+        ApplicationContext applicationContext = SpringApplication.run(OpenkmTestApplication.class, args);
 
         if (GlobalValue.pluginSwitch) {
             PluginManager pluginManager = applicationContext.getBean(PluginManager.class);

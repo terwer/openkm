@@ -25,8 +25,11 @@ cp pom.xml pom-parent.xml
 # sed -i s/<packaging>.*<\/packaging>/<packaging>pom<\/packaging>/" pom-parent.xml
 # mac
 sed -i "" "s/<packaging>.*<\/packaging>/<packaging>pom<\/packaging>/" pom-parent.xml
+sed -i "" "s/<artifactId>openkm-core<\/artifactId>/<artifactId>openkm-core-parent<\/artifactId>/" pom-parent.xml
+sed -i "" "s/<name>openkm-core<\/name>/<name>openkm-core-parent<\/name>/" pom-parent.xml
+sed -i "" "s/<description>.*<\/description>/<description>the pom parent of openkm-core<\/description>/" pom-parent.xml
 # 安装pom
-./mvnw install:install-file -DskipTests -Dfile=pom-parent.xml -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID} -Dversion=${APP_VERSION} -Dpackaging=pom
+./mvnw install:install-file -DskipTests -Dfile=pom-parent.xml -DgroupId=${GROUP_ID} -DartifactId=${ARTIFACT_ID}-parent -Dversion=${APP_VERSION} -Dpackaging=pom
 echo '安装pom完毕.'
 
 echo '安装core完毕.'

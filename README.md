@@ -1,29 +1,25 @@
 # openkm
 
-an opensource light-weight,pluggable knowledge management platform
+an opensource light-weight , pluggable knowledge management platform
 
 ## Structure
 
-- shared-plugin-interfaces
+- openkm-common
 
-  share plugin interface for openkm plugin system
+  common libraries for openkm
 
 - openkm-core 
 
   core module, the smallest runnable unit     
 
-- openkm-plugins 
+- openkm-apps
   
-  plugins directory, every function act as a plugin  
+  plugins directory, every function act as a plugin , `openkm-dev-plugins` is for development , and `openkm-prod-plugins` is for production. 
   
   - appstore-plugin
 
     appstore plugin for openkm
-  
-  - auth plugin
-  
-    a plugin for auth
 
-- openkm-plugin-archetype
+- openkm-plugin-tools
  
-  plugin template
+  plugin template and other helpful tools

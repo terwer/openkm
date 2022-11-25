@@ -8,7 +8,7 @@ import org.pf4j.spring.SpringPluginManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory;
-import space.terwer.openkm.core.property.GlobalValue;
+import space.terwer.openkm.common.GlobalValue;
 
 import javax.annotation.PostConstruct;
 import java.nio.file.Path;

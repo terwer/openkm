@@ -2,9 +2,7 @@
 
 The core module of openkm
 
-# Getting Started
-
-### Reference Documentation
+## Reference Documentation
 
 For further reference, please consider the following sections:
 
@@ -15,7 +13,7 @@ For further reference, please consider the following sections:
 * [Spring Boot DevTools](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#using.devtools)
 * [Spring Configuration Processor](https://docs.spring.io/spring-boot/docs/2.7.5/reference/htmlsingle/#appendix.configuration-metadata.annotation-processor)
 
-### Guides
+## Guides
 
 The following guides illustrate how to use some features concretely:
 
@@ -23,3 +21,36 @@ The following guides illustrate how to use some features concretely:
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/rest/)
 
+## Install
+
+### Bash
+
+```bash
+./build.sh
+```
+
+### PowerShell
+
+```bash
+pwsh ./build.ps1
+```
+
+## Usage
+
+This project is used for plugin only , please add the following code in `pom.xml`
+
+```xml
+<dependency>
+    <groupId>space.terwer</groupId>
+    <artifactId>openkm-core</artifactId>
+    <version>1.0.2</version>
+</dependency>
+```
+
+## Run
+
+1. Navigate to `OpenkmCoreApplication` via `openkm-core/src/main/java/space/terwer/openkm/core/OpenkmCoreApplication.java` , then start the `main` method.
+
+2. View url is:
+
+http://localhost:8888
