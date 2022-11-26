@@ -7,6 +7,6 @@ if ( "Unix" -eq $os)
 else
 {
     cmd.exe /c "mvnw.cmd -v"
-    cmd.exe /c "echo 'not implemented.'"
+    & 'C:/Program Files/Git/bin/bash.exe' --login -i -c "./build.sh"
 }
 Write-Output "finished."
