@@ -16,7 +16,7 @@ common libraries for openkm
 pwsh ./build.ps1
 ```
 
-## Uasge
+## Usage
 
 Add the following code in `pom.xml`
 

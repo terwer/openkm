@@ -47,7 +47,8 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Bean
     public InternalResourceViewResolver viewResolver() {
-        return new InternalResourceViewResolver();// 用于解析重定向 redirect:
+        // 用于解析重定向 redirect:
+        return new InternalResourceViewResolver();
     }
 
     /**
